@@ -1,7 +1,6 @@
 package com.carsRestApi.CarsRestApi.service;
 
-import com.carsRestApi.CarsRestApi.dao.DAO;
-import com.carsRestApi.CarsRestApi.dao.DAOFactory;
+import com.carsRestApi.CarsRestApi.dao.CarDAO;
 import com.carsRestApi.CarsRestApi.model.Car;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import java.util.Dictionary;
 @Service
 public class CarsService {
 
-    private static final DAO<Car> carDAO = DAOFactory.getCarDAO();
+    private static final CarDAO carDAO = new CarDAO();
 
     public Dictionary<Integer, Car> getCars() {
         return carDAO.findAll();
