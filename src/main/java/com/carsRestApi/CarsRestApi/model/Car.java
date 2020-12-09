@@ -6,6 +6,16 @@ public class Car {
     private String brand;
     private String color;
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", brand='" + brand + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
+
     public Car(int id, String model, String brand, String color) {
         this.id = id;
         this.model = model;

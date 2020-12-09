@@ -56,9 +56,7 @@ public class MainController {
     @RequestMapping(value = {"/cars/{id}"}, method = RequestMethod.DELETE)
     @ResponseBody
     Dictionary<Integer, Car> deleteById(@PathVariable("id") Integer id) {
-        System.out.println("1");
         boolean status = cars.deleteCar(cars.getCars().get(id));
-        System.out.println(status);
         if (status) {
             return this.getCars();
         } else return null;

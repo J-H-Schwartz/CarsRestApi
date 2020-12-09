@@ -8,8 +8,8 @@ import java.util.Hashtable;
 
 @Repository
 public class TestRepository {
-    public static Dictionary<Integer, Car> cars = new Hashtable<>();
 
+    public static Dictionary<Integer, Car> cars = new Hashtable<>();
     public static Integer cars_id = 2;
 
     static {

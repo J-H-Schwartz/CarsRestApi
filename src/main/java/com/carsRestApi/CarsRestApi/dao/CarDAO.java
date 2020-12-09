@@ -20,15 +20,14 @@ public class CarDAO {
     }
 
     public boolean update(Car car) {
-        TestRepository.cars.get(car.getId()).setBrand(car.getBrand());
-        TestRepository.cars.get(car.getId()).setModel(car.getModel());
-        TestRepository.cars.get(car.getId()).setColor(car.getColor());
+        System.out.println(car.getId());
+        System.out.println(car.toString());
+        TestRepository.cars.put(car.getId(), car);
         return true;
     }
 
     public boolean delete(Car car) {
         TestRepository.cars.remove(car.getId());
-        System.out.println(TestRepository.cars);
         return true;
     }
 
