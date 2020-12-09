@@ -48,10 +48,10 @@ class CarsRestApiApplicationTests {
 	}
 	@Test
 	public void updateCar() {
-		this.testRestTemplate.put("/cars", "{\"id\":1,\"model\":\"Laguna\",\"brand\":\"Renault\",\"color\":\"Rouge\"}", String.class);
+		this.testRestTemplate.put("/cars/1", "{\"id\":1,\"model\":\"Laguna\",\"brand\":\"Renault\",\"color\":\"Rouge\"}", String.class);
 		String body = this.testRestTemplate.getForObject("/cars/1", String.class);
 		assertEquals("{\"id\":1,\"model\":\"Laguna\",\"brand\":\"Renault\",\"color\":\"Rouge\"}", body);
-		this.testRestTemplate.put("/cars", "{\"id\":1,\"model\":\"Megane\",\"brand\":\"Renault\",\"color\":\"Jaune\"}", String.class);
+		this.testRestTemplate.put("/cars/1", "{\"id\":1,\"model\":\"Megane\",\"brand\":\"Renault\",\"color\":\"Jaune\"}", String.class);
 	}
 	@Test
 	public void deleteCarById() {

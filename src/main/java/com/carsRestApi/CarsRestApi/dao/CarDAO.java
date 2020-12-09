@@ -20,8 +20,6 @@ public class CarDAO {
     }
 
     public boolean update(Car car) {
-        System.out.println(car.getId());
-        System.out.println(car.toString());
         TestRepository.cars.put(car.getId(), car);
         return true;
     }
