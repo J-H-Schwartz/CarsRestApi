@@ -43,11 +43,11 @@ public class MainController {
         } else return null;
     }
 
-    @RequestMapping(value = {"/cars"}, method = RequestMethod.PUT)
+    @RequestMapping(value = {"/cars/{id}"}, method = RequestMethod.PUT)
     @ResponseBody
-    Dictionary<Integer, Car> updateById(@RequestBody String body) {
+    Dictionary<Integer, Car> updateById(@RequestBody String body, @PathVariable("id") int id) {
         JSONObject json = new JSONObject(body);
-        Car car = new Car(json.getInt("id"), json.getString("model"), json.getString("brand"), json.getString("color"));
+        Car car = new Car(id, json.getString("model"), json.getString("brand"), json.getString("color"));
         boolean status = cars.updateCar(car);
         if (status) {
             return this.getCars();
