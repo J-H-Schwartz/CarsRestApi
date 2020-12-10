@@ -1,15 +1,10 @@
 package com.carsRestApi.CarsRestApi;
 
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-
-//import org.springframework.transaction.annotation.Transactional;
-
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -37,8 +32,6 @@ class CarsRestApiApplicationTests {
 
 	@Test
 	public void addCar() {
-		final RequestBody sendBody = RequestBody.create("{\"model\":\"911\",\"brand\":\"Porsche\",\"color\":\"Black\"}", okhttp3.MediaType.parse("Application/JSON"));
-		Request request = new Request.Builder().url("http://localhost:8000/cars").post(sendBody).build();
 		String body = this.testRestTemplate.postForObject("/cars", "{\"model\":\"911\",\"brand\":\"Porsche\",\"color\":\"Black\"}", String.class);
 		assertEquals("{\"3\":{\"id\":3,\"model\":\"911\",\"brand\":\"Porsche\",\"color\":\"Black\"}," +
 				"\"2\":{\"id\":2,\"model\":\"308\",\"brand\":\"Peugeot\",\"color\":\"Anthracite\"}," +

@@ -1,10 +1,19 @@
 package com.carsRestApi.CarsRestApi.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Car {
+    @Id
     private int id;
     private String model;
     private String brand;
     private String color;
+
+    public Car() {
+
+    }
 
     @Override
     public String toString() {

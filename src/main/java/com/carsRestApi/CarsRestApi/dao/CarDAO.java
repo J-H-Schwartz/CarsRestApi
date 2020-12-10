@@ -1,36 +1,46 @@
 package com.carsRestApi.CarsRestApi.dao;
 
 import com.carsRestApi.CarsRestApi.model.Car;
-import com.carsRestApi.CarsRestApi.repository.TestRepository;
+import com.carsRestApi.CarsRestApi.repository.CarsDB;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.Dictionary;
+import java.util.List;
+import java.util.Optional;
 
+@Component
 public class CarDAO {
 
-    public CarDAO()
+    private final CarsDB carsDB;
+
+    @Autowired
+    public CarDAO(CarsDB carsDB)
     {
-        super();
+        this.carsDB = carsDB;
     }
 
-    public int create(Car car) {
-        TestRepository.setCars_id(TestRepository.getCars_id() + 1);
-        car.setId(TestRepository.getCars_id());
-        TestRepository.cars.put(TestRepository.getCars_id(), car);
-        return TestRepository.getCars_id();
+    public List<Car> create(Car car) {
+        carsDB.save(car);
+        return carsDB.findAll();
     }
 
-    public boolean update(Car car) {
-        TestRepository.cars.put(car.getId(), car);
-        return true;
+    public List<Car> update(Car car) {
+        carsDB.save(car);
+        System.out.println(carsDB.findAll());
+        return carsDB.findAll();
     }
 
-    public boolean delete(Car car) {
-        TestRepository.cars.remove(car.getId());
-        return true;
+    public List<Car> delete(Car car) {
+        carsDB.delete(car);
+        return carsDB.findAll();
     }
 
-    public Dictionary<Integer, Car> findAll() {
-        return TestRepository.cars;
+    public List<Car> findAll() {
+        return carsDB.findAll();
     }
 
+    public Car findById(Integer id) {
+        Optional<Car> car_opt = carsDB.findById(id);
+        return car_opt.orElse(null);
+    }
 }

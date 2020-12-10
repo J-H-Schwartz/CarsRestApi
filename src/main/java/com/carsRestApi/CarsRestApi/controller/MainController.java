@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import java.util.Dictionary;
+import java.util.Hashtable;
+
 
 
 @Controller
@@ -28,18 +30,16 @@ public class MainController {
     @RequestMapping(value = {"/cars/{id}"}, method = RequestMethod.GET)
     @ResponseBody
     Car getById(@PathVariable("id") Integer id) {
-        return cars.getCars().get(id);
+        return cars.getCarById(id);
     }
 
     @RequestMapping(value = {"/cars"}, method = RequestMethod.POST)
     @ResponseBody
     Dictionary<Integer, Car> addCar(@RequestBody String body) {
         JSONObject json = new JSONObject(body);
+        Dictionary<Integer, Car> carsDict = new Hashtable<>();
         Car car = new Car(json.getString("model"), json.getString("brand"), json.getString("color"));
-        int new_id = cars.createCar(car);
-        if (new_id != -1) {
-            return this.getCars();
-        } else return null;
+        return cars.createCar(car);
     }
 
     @RequestMapping(value = {"/cars/{id}"}, method = RequestMethod.PUT)
@@ -47,18 +47,12 @@ public class MainController {
     Dictionary<Integer, Car> updateById(@RequestBody String body, @PathVariable("id") int id) {
         JSONObject json = new JSONObject(body);
         Car car = new Car(id, json.getString("model"), json.getString("brand"), json.getString("color"));
-        boolean status = cars.updateCar(car);
-        if (status) {
-            return this.getCars();
-        } else return null;
+        return cars.updateCar(car);
     }
 
     @RequestMapping(value = {"/cars/{id}"}, method = RequestMethod.DELETE)
     @ResponseBody
     Dictionary<Integer, Car> deleteById(@PathVariable("id") Integer id) {
-        boolean status = cars.deleteCar(cars.getCars().get(id));
-        if (status) {
-            return this.getCars();
-        } else return null;
+        return cars.deleteCar(id);
     }
 }

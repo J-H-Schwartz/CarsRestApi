@@ -17,12 +17,4 @@ public class TestRepository {
         cars.put(1, new Car(1, "Megane", "Renault", "Jaune"));
         cars.put(2, new Car(2, "308", "Peugeot", "Anthracite"));
     }
-
-    public static Integer getCars_id() {
-        return cars_id;
-    }
-
-    public static void setCars_id(Integer cars_id) {
-        TestRepository.cars_id = cars_id;
-    }
 }
